@@ -5,7 +5,7 @@ import (
 	"testing"
 	"unsafe"
 
-	"rodusek.dev/pkg/imgui/internal/handle"
+	"github.com/bitwizeshift/go-imgui/internal/handle"
 )
 
 type point struct {

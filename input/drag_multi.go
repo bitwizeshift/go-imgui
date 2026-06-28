@@ -1,8 +1,8 @@
 package input
 
 import (
-	"rodusek.dev/pkg/imgui"
-	"rodusek.dev/pkg/imgui/internal/cimgui"
+	"github.com/bitwizeshift/go-imgui"
+	"github.com/bitwizeshift/go-imgui/internal/cimgui"
 )
 
 // dragSpeed returns speed, or 1 when speed is zero.

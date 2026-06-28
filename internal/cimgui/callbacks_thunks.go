@@ -28,7 +28,7 @@ import "C"
 import (
 	"unsafe"
 
-	"rodusek.dev/pkg/imgui/internal/handle"
+	"github.com/bitwizeshift/go-imgui/internal/handle"
 )
 
 // InputTextResizable edits buf, growing it automatically as text is entered, and

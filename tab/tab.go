@@ -2,8 +2,8 @@
 package tab
 
 import (
-	"rodusek.dev/pkg/imgui"
-	"rodusek.dev/pkg/imgui/internal/cimgui"
+	"github.com/bitwizeshift/go-imgui"
+	"github.com/bitwizeshift/go-imgui/internal/cimgui"
 )
 
 // Side places a tab at the leading or trailing edge of the bar. The zero value

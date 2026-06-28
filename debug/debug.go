@@ -2,7 +2,7 @@
 // widgets.
 package debug
 
-import "rodusek.dev/pkg/imgui/internal/cimgui"
+import "github.com/bitwizeshift/go-imgui/internal/cimgui"
 
 // DemoWindow shows the Dear ImGui demo window, a live reference for the whole
 // library. When Open is non-nil it is cleared when the window is closed.

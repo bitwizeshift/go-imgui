@@ -7,7 +7,7 @@ import (
 	"image/draw"
 	"io"
 
-	"rodusek.dev/pkg/imgui/internal/cimgui"
+	"github.com/bitwizeshift/go-imgui/internal/cimgui"
 )
 
 // Texture is a GPU texture handle.

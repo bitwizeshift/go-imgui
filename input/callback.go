@@ -1,6 +1,6 @@
 package input
 
-import "rodusek.dev/pkg/imgui/internal/cimgui"
+import "github.com/bitwizeshift/go-imgui/internal/cimgui"
 
 // HistoryDir is the direction of a history-recall request delivered to a [Text]
 // widget's OnHistory handler.

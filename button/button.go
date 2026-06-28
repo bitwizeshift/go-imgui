@@ -2,8 +2,8 @@
 package button
 
 import (
-	"rodusek.dev/pkg/imgui"
-	"rodusek.dev/pkg/imgui/internal/cimgui"
+	"github.com/bitwizeshift/go-imgui"
+	"github.com/bitwizeshift/go-imgui/internal/cimgui"
 )
 
 // Button is a clickable button. OnClick (if set) fires when pressed; the press

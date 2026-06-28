@@ -2,8 +2,8 @@
 package color
 
 import (
-	"rodusek.dev/pkg/imgui"
-	"rodusek.dev/pkg/imgui/internal/cimgui"
+	"github.com/bitwizeshift/go-imgui"
+	"github.com/bitwizeshift/go-imgui/internal/cimgui"
 )
 
 // flagSetters is the shared cached color-edit bitfield plus its setters,

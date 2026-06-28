@@ -2,8 +2,8 @@
 package table
 
 import (
-	"rodusek.dev/pkg/imgui"
-	"rodusek.dev/pkg/imgui/internal/cimgui"
+	"github.com/bitwizeshift/go-imgui"
+	"github.com/bitwizeshift/go-imgui/internal/cimgui"
 )
 
 // Sizing selects a column's width policy. The zero value leaves the table's

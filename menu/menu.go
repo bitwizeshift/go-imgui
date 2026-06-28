@@ -2,8 +2,8 @@
 package menu
 
 import (
-	"rodusek.dev/pkg/imgui"
-	"rodusek.dev/pkg/imgui/internal/cimgui"
+	"github.com/bitwizeshift/go-imgui"
+	"github.com/bitwizeshift/go-imgui/internal/cimgui"
 )
 
 // MainBar is the full-width menu bar across the top of the viewport. Add [Menu]s

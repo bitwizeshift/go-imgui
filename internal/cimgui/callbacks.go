@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"unsafe"
 
-	"rodusek.dev/pkg/imgui/internal/handle"
+	"github.com/bitwizeshift/go-imgui/internal/handle"
 )
 
 // Key identifies a keyboard key. Mirrors a subset of ImGuiKey relevant to input

@@ -4,8 +4,8 @@ package tooltip
 import (
 	"fmt"
 
-	"rodusek.dev/pkg/imgui"
-	"rodusek.dev/pkg/imgui/internal/cimgui"
+	"github.com/bitwizeshift/go-imgui"
+	"github.com/bitwizeshift/go-imgui/internal/cimgui"
 )
 
 // Tooltip wraps a widget and shows Text when that widget is hovered. It is a

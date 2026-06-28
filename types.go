@@ -1,6 +1,6 @@
 package imgui
 
-import "rodusek.dev/pkg/imgui/internal/cimgui"
+import "github.com/bitwizeshift/go-imgui/internal/cimgui"
 
 // Vec2 is a 2D vector of 32-bit floats, mirroring Dear ImGui's ImVec2. It is an
 // alias of the binding type so it can be passed straight through with no copy.

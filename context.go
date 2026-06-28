@@ -1,6 +1,6 @@
 package imgui
 
-import "rodusek.dev/pkg/imgui/internal/cimgui"
+import "github.com/bitwizeshift/go-imgui/internal/cimgui"
 
 // Context is a Dear ImGui context. Most programs let app.Run own the context and
 // never create one directly.

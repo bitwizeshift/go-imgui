@@ -6,7 +6,7 @@
 package input
 
 import (
-	"rodusek.dev/pkg/imgui/internal/cimgui"
+	"github.com/bitwizeshift/go-imgui/internal/cimgui"
 )
 
 // sliderFlags is the shared cached slider/drag bitfield plus its setters,

@@ -3,8 +3,8 @@ package input
 import (
 	"unsafe"
 
-	"rodusek.dev/pkg/imgui"
-	"rodusek.dev/pkg/imgui/internal/cimgui"
+	"github.com/bitwizeshift/go-imgui"
+	"github.com/bitwizeshift/go-imgui/internal/cimgui"
 )
 
 // Scalarable is the set of numeric types the generic scalar widgets accept. Each
