@@ -6,10 +6,14 @@ import "C"
 
 // BackendInit wires the GLFW + OpenGL3 ImGui backends to win. Returns false on
 // failure.
-func BackendInit(win Window) bool { return bool(C.backendInit((*C.GLFWwindow)(win))) }
+func BackendInit(win Window) bool {
+	return bool(C.backendInit((*C.GLFWwindow)(win)))
+}
 
 // BackendNewFrame starts a backend frame; call before [NewFrame].
-func BackendNewFrame() { C.backendNewFrame() }
+func BackendNewFrame() {
+	C.backendNewFrame()
+}
 
 // BackendRender clears to the given color and draws the current frame; call
 // after [Render].
@@ -18,4 +22,6 @@ func BackendRender(fbWidth, fbHeight int, r, g, b, a float32) {
 }
 
 // BackendShutdown tears down both backends.
-func BackendShutdown() { C.backendShutdown() }
+func BackendShutdown() {
+	C.backendShutdown()
+}

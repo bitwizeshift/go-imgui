@@ -58,7 +58,9 @@ func ArrowButton(strID string, dir Dir) bool {
 }
 
 // Bullet draws a small bullet and advances the cursor onto the same line.
-func Bullet() { C.igBullet() }
+func Bullet() {
+	C.igBullet()
+}
 
 // Checkbox draws a checkbox bound to v and reports whether it changed.
 func Checkbox(label string, v *bool) bool {

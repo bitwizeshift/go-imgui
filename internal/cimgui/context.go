@@ -11,19 +11,31 @@ func CreateContext() Context { return Context(C.igCreateContext(nil)) }
 func DestroyContext(ctx Context) { C.igDestroyContext((*C.ImGuiContext)(ctx)) }
 
 // NewFrame begins a new Dear ImGui frame.
-func NewFrame() { C.igNewFrame() }
+func NewFrame() {
+	C.igNewFrame()
+}
 
 // EndFrame ends the current frame; usually called implicitly by [Render].
-func EndFrame() { C.igEndFrame() }
+func EndFrame() {
+	C.igEndFrame()
+}
 
 // Render finalizes the current frame's draw data.
-func Render() { C.igRender() }
+func Render() {
+	C.igRender()
+}
 
 // StyleColorsDark applies the built-in dark style.
-func StyleColorsDark() { C.igStyleColorsDark(nil) }
+func StyleColorsDark() {
+	C.igStyleColorsDark(nil)
+}
 
 // StyleColorsLight applies the built-in light style.
-func StyleColorsLight() { C.igStyleColorsLight(nil) }
+func StyleColorsLight() {
+	C.igStyleColorsLight(nil)
+}
 
 // StyleColorsClassic applies the built-in classic style.
-func StyleColorsClassic() { C.igStyleColorsClassic(nil) }
+func StyleColorsClassic() {
+	C.igStyleColorsClassic(nil)
+}

@@ -75,7 +75,9 @@ func Begin(name string, pOpen *bool, flags WindowFlags) bool {
 }
 
 // End closes the window opened by the matching [Begin].
-func End() { C.igEnd() }
+func End() {
+	C.igEnd()
+}
 
 // BeginChild_Str opens a child region identified by a string. A zero size fills
 // the available space. Call [EndChild] unconditionally afterwards.
@@ -93,7 +95,9 @@ func BeginChild_ID(id uint32, size Vec2, childFlags ChildFlags, windowFlags Wind
 }
 
 // EndChild closes the child region opened by [BeginChild_Str] or [BeginChild_ID].
-func EndChild() { C.igEndChild() }
+func EndChild() {
+	C.igEndChild()
+}
 
 // SetNextWindowPos sets the position of the next window, with an optional pivot.
 func SetNextWindowPos(pos Vec2, cond Cond, pivot Vec2) {
@@ -106,7 +110,9 @@ func SetNextWindowSize(size Vec2, cond Cond) {
 }
 
 // SetNextWindowContentSize sets the content size of the next window.
-func SetNextWindowContentSize(size Vec2) { C.igSetNextWindowContentSize(size.c()) }
+func SetNextWindowContentSize(size Vec2) {
+	C.igSetNextWindowContentSize(size.c())
+}
 
 // SetNextWindowCollapsed sets the collapsed state of the next window.
 func SetNextWindowCollapsed(collapsed bool, cond Cond) {
@@ -114,7 +120,11 @@ func SetNextWindowCollapsed(collapsed bool, cond Cond) {
 }
 
 // SetNextWindowFocus focuses the next window.
-func SetNextWindowFocus() { C.igSetNextWindowFocus() }
+func SetNextWindowFocus() {
+	C.igSetNextWindowFocus()
+}
 
 // SetNextWindowBgAlpha overrides the background alpha of the next window.
-func SetNextWindowBgAlpha(alpha float32) { C.igSetNextWindowBgAlpha(C.float(alpha)) }
+func SetNextWindowBgAlpha(alpha float32) {
+	C.igSetNextWindowBgAlpha(C.float(alpha))
+}

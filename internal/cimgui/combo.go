@@ -53,7 +53,9 @@ func BeginCombo(label, previewValue string, flags ComboFlags) bool {
 }
 
 // EndCombo closes the combo box opened by [BeginCombo].
-func EndCombo() { C.igEndCombo() }
+func EndCombo() {
+	C.igEndCombo()
+}
 
 // Combo_Str_arr draws a combo box selecting an index within items, updating
 // currentItem and reporting whether it changed. A negative popupMaxHeightInItems

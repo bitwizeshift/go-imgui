@@ -56,7 +56,9 @@ func TreePush_Str(strID string) {
 }
 
 // TreePop unindents and pops the tree node ID pushed by an open tree node.
-func TreePop() { C.igTreePop() }
+func TreePop() {
+	C.igTreePop()
+}
 
 // SetNextItemOpen sets the open state applied to the next tree node or header.
 func SetNextItemOpen(isOpen bool, cond Cond) {
