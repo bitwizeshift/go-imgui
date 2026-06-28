@@ -39,16 +39,16 @@ const (
 type ChildFlags int32
 
 const (
-	ChildFlagsNone                 ChildFlags = C.ImGuiChildFlags_None
-	ChildFlagsBorders              ChildFlags = C.ImGuiChildFlags_Borders
+	ChildFlagsNone                   ChildFlags = C.ImGuiChildFlags_None
+	ChildFlagsBorders                ChildFlags = C.ImGuiChildFlags_Borders
 	ChildFlagsAlwaysUseWindowPadding ChildFlags = C.ImGuiChildFlags_AlwaysUseWindowPadding
-	ChildFlagsResizeX              ChildFlags = C.ImGuiChildFlags_ResizeX
-	ChildFlagsResizeY              ChildFlags = C.ImGuiChildFlags_ResizeY
-	ChildFlagsAutoResizeX          ChildFlags = C.ImGuiChildFlags_AutoResizeX
-	ChildFlagsAutoResizeY          ChildFlags = C.ImGuiChildFlags_AutoResizeY
-	ChildFlagsAlwaysAutoResize     ChildFlags = C.ImGuiChildFlags_AlwaysAutoResize
-	ChildFlagsFrameStyle           ChildFlags = C.ImGuiChildFlags_FrameStyle
-	ChildFlagsNavFlattened         ChildFlags = C.ImGuiChildFlags_NavFlattened
+	ChildFlagsResizeX                ChildFlags = C.ImGuiChildFlags_ResizeX
+	ChildFlagsResizeY                ChildFlags = C.ImGuiChildFlags_ResizeY
+	ChildFlagsAutoResizeX            ChildFlags = C.ImGuiChildFlags_AutoResizeX
+	ChildFlagsAutoResizeY            ChildFlags = C.ImGuiChildFlags_AutoResizeY
+	ChildFlagsAlwaysAutoResize       ChildFlags = C.ImGuiChildFlags_AlwaysAutoResize
+	ChildFlagsFrameStyle             ChildFlags = C.ImGuiChildFlags_FrameStyle
+	ChildFlagsNavFlattened           ChildFlags = C.ImGuiChildFlags_NavFlattened
 )
 
 // Cond selects when a state-setting call applies. Mirrors ImGuiCond_.

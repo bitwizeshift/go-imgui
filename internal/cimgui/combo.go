@@ -11,14 +11,14 @@ import "unsafe"
 type ComboFlags int32
 
 const (
-	ComboFlagsNone           ComboFlags = C.ImGuiComboFlags_None
-	ComboFlagsPopupAlignLeft ComboFlags = C.ImGuiComboFlags_PopupAlignLeft
-	ComboFlagsHeightSmall    ComboFlags = C.ImGuiComboFlags_HeightSmall
-	ComboFlagsHeightRegular  ComboFlags = C.ImGuiComboFlags_HeightRegular
-	ComboFlagsHeightLarge    ComboFlags = C.ImGuiComboFlags_HeightLarge
-	ComboFlagsHeightLargest  ComboFlags = C.ImGuiComboFlags_HeightLargest
-	ComboFlagsNoArrowButton  ComboFlags = C.ImGuiComboFlags_NoArrowButton
-	ComboFlagsNoPreview      ComboFlags = C.ImGuiComboFlags_NoPreview
+	ComboFlagsNone            ComboFlags = C.ImGuiComboFlags_None
+	ComboFlagsPopupAlignLeft  ComboFlags = C.ImGuiComboFlags_PopupAlignLeft
+	ComboFlagsHeightSmall     ComboFlags = C.ImGuiComboFlags_HeightSmall
+	ComboFlagsHeightRegular   ComboFlags = C.ImGuiComboFlags_HeightRegular
+	ComboFlagsHeightLarge     ComboFlags = C.ImGuiComboFlags_HeightLarge
+	ComboFlagsHeightLargest   ComboFlags = C.ImGuiComboFlags_HeightLargest
+	ComboFlagsNoArrowButton   ComboFlags = C.ImGuiComboFlags_NoArrowButton
+	ComboFlagsNoPreview       ComboFlags = C.ImGuiComboFlags_NoPreview
 	ComboFlagsWidthFitPreview ComboFlags = C.ImGuiComboFlags_WidthFitPreview
 )
 

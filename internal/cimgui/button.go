@@ -21,11 +21,11 @@ const (
 type ButtonFlags int32
 
 const (
-	ButtonFlagsNone             ButtonFlags = C.ImGuiButtonFlags_None
-	ButtonFlagsMouseButtonLeft  ButtonFlags = C.ImGuiButtonFlags_MouseButtonLeft
-	ButtonFlagsMouseButtonRight ButtonFlags = C.ImGuiButtonFlags_MouseButtonRight
+	ButtonFlagsNone              ButtonFlags = C.ImGuiButtonFlags_None
+	ButtonFlagsMouseButtonLeft   ButtonFlags = C.ImGuiButtonFlags_MouseButtonLeft
+	ButtonFlagsMouseButtonRight  ButtonFlags = C.ImGuiButtonFlags_MouseButtonRight
 	ButtonFlagsMouseButtonMiddle ButtonFlags = C.ImGuiButtonFlags_MouseButtonMiddle
-	ButtonFlagsEnableNav        ButtonFlags = C.ImGuiButtonFlags_EnableNav
+	ButtonFlagsEnableNav         ButtonFlags = C.ImGuiButtonFlags_EnableNav
 )
 
 // Button draws a button and reports whether it was clicked. A zero size

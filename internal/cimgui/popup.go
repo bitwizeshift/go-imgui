@@ -11,16 +11,16 @@ import "unsafe"
 type PopupFlags int32
 
 const (
-	PopupFlagsNone                  PopupFlags = C.ImGuiPopupFlags_None
-	PopupFlagsMouseButtonLeft       PopupFlags = C.ImGuiPopupFlags_MouseButtonLeft
-	PopupFlagsMouseButtonRight      PopupFlags = C.ImGuiPopupFlags_MouseButtonRight
-	PopupFlagsMouseButtonMiddle     PopupFlags = C.ImGuiPopupFlags_MouseButtonMiddle
-	PopupFlagsNoReopen              PopupFlags = C.ImGuiPopupFlags_NoReopen
+	PopupFlagsNone                    PopupFlags = C.ImGuiPopupFlags_None
+	PopupFlagsMouseButtonLeft         PopupFlags = C.ImGuiPopupFlags_MouseButtonLeft
+	PopupFlagsMouseButtonRight        PopupFlags = C.ImGuiPopupFlags_MouseButtonRight
+	PopupFlagsMouseButtonMiddle       PopupFlags = C.ImGuiPopupFlags_MouseButtonMiddle
+	PopupFlagsNoReopen                PopupFlags = C.ImGuiPopupFlags_NoReopen
 	PopupFlagsNoOpenOverExistingPopup PopupFlags = C.ImGuiPopupFlags_NoOpenOverExistingPopup
-	PopupFlagsNoOpenOverItems       PopupFlags = C.ImGuiPopupFlags_NoOpenOverItems
-	PopupFlagsAnyPopupId            PopupFlags = C.ImGuiPopupFlags_AnyPopupId
-	PopupFlagsAnyPopupLevel         PopupFlags = C.ImGuiPopupFlags_AnyPopupLevel
-	PopupFlagsAnyPopup              PopupFlags = C.ImGuiPopupFlags_AnyPopup
+	PopupFlagsNoOpenOverItems         PopupFlags = C.ImGuiPopupFlags_NoOpenOverItems
+	PopupFlagsAnyPopupId              PopupFlags = C.ImGuiPopupFlags_AnyPopupId
+	PopupFlagsAnyPopupLevel           PopupFlags = C.ImGuiPopupFlags_AnyPopupLevel
+	PopupFlagsAnyPopup                PopupFlags = C.ImGuiPopupFlags_AnyPopup
 )
 
 // OpenPopup_Str marks the popup with the given string ID to open.
