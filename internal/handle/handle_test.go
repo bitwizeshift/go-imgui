@@ -1,6 +1,7 @@
 package handle_test
 
 import (
+	"reflect"
 	"testing"
 	"unsafe"
 
@@ -53,7 +54,7 @@ func TestSaveRestore(t *testing.T) {
 			got := handle.Restore(token)
 
 			// Assert
-			if got, want := got, tc.want; got != want {
+			if got, want := got, tc.want; !reflect.DeepEqual(got, want) {
 				t.Errorf("Restore() = %v, want %v", got, want)
 			}
 		})
