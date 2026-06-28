@@ -51,7 +51,7 @@ func main() {
 		editCount int32   = 0
 		funcIdx   int32   = 0
 		rounding  float32 = 4
-		frame     int     = 0
+		frame             = 0
 	)
 
 	rgb := imgui.Color{R: 0.4, G: 0.7, B: 0.2, A: 1}
