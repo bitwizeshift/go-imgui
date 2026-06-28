@@ -17,5 +17,14 @@ type Color struct {
 // Vec4 converts the color to a [Vec4] (the form Dear ImGui consumes).
 func (c Color) Vec4() Vec4 { return Vec4{X: c.R, Y: c.G, Z: c.B, W: c.A} }
 
+// U32 is a packed 32-bit RGBA color, the form the custom-drawing primitives
+// consume.
+type U32 = cimgui.U32
+
+// U32 packs the color into a [U32].
+func (c Color) U32() U32 {
+	return cimgui.ColorConvertFloat4ToU32(c.Vec4())
+}
+
 // ColorFromVec4 builds a [Color] from a [Vec4].
 func ColorFromVec4(v Vec4) Color { return Color{R: v.X, G: v.Y, B: v.Z, A: v.W} }

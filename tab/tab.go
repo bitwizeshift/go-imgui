@@ -79,6 +79,42 @@ func (b *Bar) Display() {
 	}
 }
 
+// ItemButton is a button that sits in a tab bar's tab row (alongside the tabs)
+// rather than being a selectable tab. Add it to a [Bar].
+type ItemButton struct {
+	Label   string
+	OnClick func()
+	flags   cimgui.TabItemFlags
+	clicked bool
+}
+
+// NewItemButton returns a tab-bar button.
+func NewItemButton(label string) *ItemButton { return &ItemButton{Label: label} }
+
+// SetSide pins the button to the leading or trailing edge of the bar.
+func (b *ItemButton) SetSide(s Side) {
+	b.flags &^= cimgui.TabItemFlagsLeading | cimgui.TabItemFlagsTrailing
+	switch s {
+	case SideLeading:
+		b.flags |= cimgui.TabItemFlagsLeading
+	case SideTrailing:
+		b.flags |= cimgui.TabItemFlagsTrailing
+	}
+}
+
+// Display draws the button. Place it inside a [Bar].
+func (b *ItemButton) Display() {
+	b.clicked = cimgui.TabItemButton(b.Label, b.flags)
+	if b.clicked && b.OnClick != nil {
+		b.OnClick()
+	}
+}
+
+// Clicked reports whether the button was clicked during the last Display.
+func (b *ItemButton) Clicked() bool { return b.clicked }
+
+var _ imgui.Widget = (*ItemButton)(nil)
+
 // Item is a single tab. When Open is non-nil the tab shows a close button and is
 // cleared when closed. Children are drawn only while the tab is selected.
 type Item struct {

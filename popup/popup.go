@@ -90,6 +90,70 @@ func (c *ContextItem) Display() {
 	}
 }
 
+// ContextWindow is a context menu opened by right-clicking anywhere in the
+// current window (not just over a specific item). ID must be unique.
+type ContextWindow struct {
+	ID      string
+	Widgets []imgui.Widget
+}
+
+// NewContextWindow returns a window context menu.
+func NewContextWindow(id string) *ContextWindow {
+	return &ContextWindow{ID: id}
+}
+
+// AddWidget appends child widgets.
+func (c *ContextWindow) AddWidget(ws ...imgui.Widget) {
+	c.Widgets = append(c.Widgets, ws...)
+}
+
+// SetLayout replaces the child widgets.
+func (c *ContextWindow) SetLayout(ws ...imgui.Widget) {
+	c.Widgets = ws
+}
+
+// Display draws the context menu when triggered.
+func (c *ContextWindow) Display() {
+	if cimgui.BeginPopupContextWindow(c.ID, cimgui.PopupFlagsMouseButtonRight) {
+		displayAll(c.Widgets)
+		cimgui.EndPopup()
+	}
+}
+
+var _ imgui.Widget = (*ContextWindow)(nil)
+
+// ContextVoid is a context menu opened by right-clicking empty space (no window).
+// ID must be unique.
+type ContextVoid struct {
+	ID      string
+	Widgets []imgui.Widget
+}
+
+// NewContextVoid returns a void context menu.
+func NewContextVoid(id string) *ContextVoid {
+	return &ContextVoid{ID: id}
+}
+
+// AddWidget appends child widgets.
+func (c *ContextVoid) AddWidget(ws ...imgui.Widget) {
+	c.Widgets = append(c.Widgets, ws...)
+}
+
+// SetLayout replaces the child widgets.
+func (c *ContextVoid) SetLayout(ws ...imgui.Widget) {
+	c.Widgets = ws
+}
+
+// Display draws the context menu when triggered.
+func (c *ContextVoid) Display() {
+	if cimgui.BeginPopupContextVoid(c.ID, cimgui.PopupFlagsMouseButtonRight) {
+		displayAll(c.Widgets)
+		cimgui.EndPopup()
+	}
+}
+
+var _ imgui.Widget = (*ContextVoid)(nil)
+
 func displayAll(ws []imgui.Widget) {
 	for _, w := range ws {
 		if w != nil {

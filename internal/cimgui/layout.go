@@ -33,3 +33,25 @@ func BeginGroup() { C.igBeginGroup() }
 
 // EndGroup ends the group opened by [BeginGroup].
 func EndGroup() { C.igEndGroup() }
+
+// GetCursorScreenPos returns the cursor position in absolute screen coordinates,
+// the origin used by the [DrawList] primitives.
+func GetCursorScreenPos() Vec2 {
+	return vec2(C.igGetCursorScreenPos())
+}
+
+// SetCursorScreenPos moves the cursor to pos in absolute screen coordinates.
+func SetCursorScreenPos(pos Vec2) {
+	C.igSetCursorScreenPos(pos.c())
+}
+
+// GetCursorPos returns the cursor position in window-local coordinates.
+func GetCursorPos() Vec2 {
+	return vec2(C.igGetCursorPos())
+}
+
+// GetContentRegionAvail returns the space remaining from the cursor to the edge
+// of the current content region.
+func GetContentRegionAvail() Vec2 {
+	return vec2(C.igGetContentRegionAvail())
+}

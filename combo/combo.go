@@ -36,6 +36,39 @@ func (c *Combo) Display() {
 // Changed reports whether the selection changed during the last Display.
 func (c *Combo) Changed() bool { return c.changed }
 
+// Func is a drop-down whose Count labels are produced lazily by Getter, selecting
+// one by index bound to Value. Use it when the items are computed rather than held
+// in a slice.
+type Func struct {
+	Label    string
+	Value    *int32
+	Count    int32
+	Getter   func(i int32) string
+	OnChange func(int32)
+	changed  bool
+	scratch  int32
+}
+
+// NewFunc returns a combo box of count items sourced from getter, bound to value.
+func NewFunc(label string, value *int32, count int32, getter func(i int32) string) *Func {
+	return &Func{Label: label, Value: value, Count: count, Getter: getter}
+}
+
+// Display draws the combo box.
+func (c *Func) Display() {
+	v := c.Value
+	if v == nil {
+		v = &c.scratch
+	}
+	c.changed = cimgui.Combo_FnStrPtr(c.Label, v, c.Getter, c.Count, -1)
+	if c.changed && c.OnChange != nil {
+		c.OnChange(*v)
+	}
+}
+
+// Changed reports whether the selection changed during the last Display.
+func (c *Func) Changed() bool { return c.changed }
+
 // ListBox is a scrolling list selecting one of Items by index, bound to Value.
 type ListBox struct {
 	Label       string
@@ -70,6 +103,64 @@ func (l *ListBox) Display() {
 
 // Changed reports whether the selection changed during the last Display.
 func (l *ListBox) Changed() bool { return l.changed }
+
+// Custom is a combo box whose open drop-down is an arbitrary set of child widgets
+// (typically Selectables). Preview is the text shown in the closed box.
+type Custom struct {
+	Label   string
+	Preview string
+	Widgets []imgui.Widget
+}
+
+// NewCustom returns a combo box with the given preview text and an arbitrary body.
+func NewCustom(label, preview string) *Custom {
+	return &Custom{Label: label, Preview: preview}
+}
+
+// AddWidget appends widgets to the drop-down body.
+func (c *Custom) AddWidget(ws ...imgui.Widget) { c.Widgets = append(c.Widgets, ws...) }
+
+// Display draws the combo box and, while open, its body.
+func (c *Custom) Display() {
+	if cimgui.BeginCombo(c.Label, c.Preview, cimgui.ComboFlagsNone) {
+		for _, w := range c.Widgets {
+			if w != nil {
+				w.Display()
+			}
+		}
+		cimgui.EndCombo()
+	}
+}
+
+var _ imgui.Widget = (*Custom)(nil)
+
+// CustomList is a scrolling list box whose body is an arbitrary set of child
+// widgets (typically Selectables). A zero Size auto-fits.
+type CustomList struct {
+	Label   string
+	Size    imgui.Vec2
+	Widgets []imgui.Widget
+}
+
+// NewCustomList returns a list box with an arbitrary body.
+func NewCustomList(label string) *CustomList { return &CustomList{Label: label} }
+
+// AddWidget appends widgets to the list body.
+func (l *CustomList) AddWidget(ws ...imgui.Widget) { l.Widgets = append(l.Widgets, ws...) }
+
+// Display draws the list box and, while open, its body.
+func (l *CustomList) Display() {
+	if cimgui.BeginListBox(l.Label, l.Size) {
+		for _, w := range l.Widgets {
+			if w != nil {
+				w.Display()
+			}
+		}
+		cimgui.EndListBox()
+	}
+}
+
+var _ imgui.Widget = (*CustomList)(nil)
 
 // Selectable is a clickable, selectable line of text. When Selected is non-nil it
 // is toggled on click; OnClick (if set) fires on click. Poll with [Selectable.Clicked].

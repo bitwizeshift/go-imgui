@@ -63,14 +63,27 @@ func (c *Column) SetResizable(on bool) {
 	setColumnFlag(&c.flags, cimgui.TableColumnFlagsNoResize, !on)
 }
 
+// SetAngledHeader draws this column's header label rotated. The table also needs
+// an angled-headers row, enabled automatically when any column requests it.
+func (c *Column) SetAngledHeader(on bool) {
+	setColumnFlag(&c.flags, cimgui.TableColumnFlagsAngledHeader, on)
+}
+
+// angled reports whether the column's header is drawn angled.
+func (c *Column) angled() bool {
+	return c.flags&cimgui.TableColumnFlagsAngledHeader != 0
+}
+
 // Table is a grid of cells. Columns describe the header; each row is a slice of
 // cell widgets (one per column).
 type Table struct {
-	ID      string
-	Size    imgui.Vec2
-	Columns []*Column
-	Rows    [][]imgui.Widget
-	flags   cimgui.TableFlags
+	ID         string
+	Size       imgui.Vec2
+	Columns    []*Column
+	Rows       [][]imgui.Widget
+	FreezeCols int32 // leftmost columns kept fixed while scrolling horizontally
+	FreezeRows int32 // topmost rows (incl. headers) kept fixed while scrolling vertically
+	flags      cimgui.TableFlags
 }
 
 // New returns an empty table. ID must be unique. By default it draws borders and
@@ -114,6 +127,16 @@ func (t *Table) AddColumn(label string) *Column {
 // AddRow appends a row of cell widgets.
 func (t *Table) AddRow(cells ...imgui.Widget) { t.Rows = append(t.Rows, cells) }
 
+// hasAngledHeaders reports whether any column requests an angled header.
+func (t *Table) hasAngledHeaders() bool {
+	for _, c := range t.Columns {
+		if c.angled() {
+			return true
+		}
+	}
+	return false
+}
+
 // Display draws the table.
 func (t *Table) Display() {
 	cols := len(t.Columns)
@@ -133,7 +156,13 @@ func (t *Table) Display() {
 	for _, c := range t.Columns {
 		cimgui.TableSetupColumn(c.Label, c.flags, c.Width, 0)
 	}
+	if t.FreezeCols > 0 || t.FreezeRows > 0 {
+		cimgui.TableSetupScrollFreeze(t.FreezeCols, t.FreezeRows)
+	}
 	if len(t.Columns) > 0 {
+		if t.hasAngledHeaders() {
+			cimgui.TableAngledHeadersRow()
+		}
 		cimgui.TableHeadersRow()
 	}
 	for _, row := range t.Rows {

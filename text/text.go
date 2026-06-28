@@ -59,6 +59,28 @@ func (t *Text) Display() {
 	}
 }
 
+// LabelText draws a label/value pair: Value on the left, Label on the right,
+// aligned like the other labelled widgets.
+type LabelText struct {
+	Label string
+	Value string
+}
+
+// NewLabelText returns a label/value pair.
+func NewLabelText(label, value string) *LabelText {
+	return &LabelText{Label: label, Value: value}
+}
+
+// NewLabelTextf returns a label/value pair with a [fmt.Sprintf]-formatted value.
+func NewLabelTextf(label, format string, args ...any) *LabelText {
+	return &LabelText{Label: label, Value: fmt.Sprintf(format, args...)}
+}
+
+// Display draws the label/value pair.
+func (l *LabelText) Display() { cimgui.LabelText(l.Label, l.Value) }
+
+var _ imgui.Widget = (*LabelText)(nil)
+
 // Separator draws a horizontal separator, optionally with a centered label.
 type Separator struct {
 	Label string

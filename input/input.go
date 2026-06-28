@@ -1,6 +1,8 @@
-// Package input provides value-editing widgets: checkboxes, radio buttons,
-// sliders, drags, numeric inputs and text inputs. Each binds a pointer to the
-// edited value and reports edits via OnChange and a Changed poll.
+// Package input provides value-editing widgets: checkboxes (including flag
+// checkboxes), radio buttons, sliders and drags (scalar, multi-component and
+// vertical), numeric and vector inputs, text inputs, and generic widgets over any
+// numeric type (see [Scalar]). Each binds a pointer to the edited value and
+// reports edits via OnChange and a Changed poll.
 package input
 
 import (
@@ -88,7 +90,9 @@ type Checkbox struct {
 }
 
 // NewCheckbox returns a checkbox bound to value.
-func NewCheckbox(label string, value *bool) *Checkbox { return &Checkbox{Label: label, Value: value} }
+func NewCheckbox(label string, value *bool) *Checkbox {
+	return &Checkbox{Label: label, Value: value}
+}
 
 // Display draws the checkbox.
 func (c *Checkbox) Display() {
@@ -287,43 +291,6 @@ func (d *DragInt) Display() {
 
 // Changed reports whether the value changed during the last Display.
 func (d *DragInt) Changed() bool { return d.changed }
-
-// Int edits a bound int in a box with optional +/- step buttons.
-type Int struct {
-	Label    string
-	Value    *int32
-	Step     int32 // default 1
-	StepFast int32 // default 100
-	textFlags
-	OnChange func(int32)
-	changed  bool
-	scratch  int32
-}
-
-// NewInt returns an integer input bound to value.
-func NewInt(label string, value *int32) *Int { return &Int{Label: label, Value: value} }
-
-// Display draws the input.
-func (i *Int) Display() {
-	v := i.Value
-	if v == nil {
-		v = &i.scratch
-	}
-	step, stepFast := i.Step, i.StepFast
-	if step == 0 {
-		step = 1
-	}
-	if stepFast == 0 {
-		stepFast = 100
-	}
-	i.changed = cimgui.InputInt(i.Label, v, step, stepFast, i.flags)
-	if i.changed && i.OnChange != nil {
-		i.OnChange(*v)
-	}
-}
-
-// Changed reports whether the value changed during the last Display.
-func (i *Int) Changed() bool { return i.changed }
 
 // Float edits a bound float in a box with optional +/- step buttons.
 type Float struct {

@@ -46,6 +46,13 @@ const (
 	InputTextFlagsNoHorizontalScroll  InputTextFlags = C.ImGuiInputTextFlags_NoHorizontalScroll
 	InputTextFlagsNoUndoRedo          InputTextFlags = C.ImGuiInputTextFlags_NoUndoRedo
 	InputTextFlagsElideLeft           InputTextFlags = C.ImGuiInputTextFlags_ElideLeft
+
+	InputTextFlagsCallbackCompletion InputTextFlags = C.ImGuiInputTextFlags_CallbackCompletion
+	InputTextFlagsCallbackHistory    InputTextFlags = C.ImGuiInputTextFlags_CallbackHistory
+	InputTextFlagsCallbackAlways     InputTextFlags = C.ImGuiInputTextFlags_CallbackAlways
+	InputTextFlagsCallbackCharFilter InputTextFlags = C.ImGuiInputTextFlags_CallbackCharFilter
+	InputTextFlagsCallbackResize     InputTextFlags = C.ImGuiInputTextFlags_CallbackResize
+	InputTextFlagsCallbackEdit       InputTextFlags = C.ImGuiInputTextFlags_CallbackEdit
 )
 
 // bufPtr returns a C char pointer to the first byte of buf, or nil if empty.

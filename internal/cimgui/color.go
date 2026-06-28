@@ -76,3 +76,18 @@ func ColorButton(descID string, col Vec4, flags ColorEditFlags, size Vec2) bool 
 	defer C.free(unsafe.Pointer(cid))
 	return bool(C.igColorButton(cid, col.c(), C.ImGuiColorEditFlags(flags), size.c()))
 }
+
+// U32 is a 32-bit packed RGBA color (ImU32), the form the [DrawList] primitives
+// consume.
+type U32 uint32
+
+// ColorConvertFloat4ToU32 packs an RGBA [Vec4] (components in 0..1) into a [U32].
+func ColorConvertFloat4ToU32(col Vec4) U32 {
+	return U32(C.igColorConvertFloat4ToU32(col.c()))
+}
+
+// GetColorU32_Col returns the current style color for idx, scaled by alphaMul, as
+// a [U32].
+func GetColorU32_Col(idx Col, alphaMul float32) U32 {
+	return U32(C.igGetColorU32_Col(C.ImGuiCol(idx), C.float(alphaMul)))
+}

@@ -11,11 +11,14 @@ import (
 // autoScale is Dear ImGui's sentinel for "compute the scale from the data".
 const autoScale = math.MaxFloat32
 
-// Lines plots Values as a line graph. When ScaleMin == ScaleMax the range is
-// computed automatically.
+// Lines plots a line graph. The samples come from Values, or from Getter (over
+// Count samples) when it is set. When ScaleMin == ScaleMax the range is computed
+// automatically.
 type Lines struct {
 	Label    string
 	Values   []float32
+	Getter   func(i int32) float32 // when set, supplies Count samples lazily
+	Count    int32
 	Overlay  string
 	Size     imgui.Vec2
 	ScaleMin float32
@@ -28,14 +31,21 @@ func NewLines(label string, values []float32) *Lines { return &Lines{Label: labe
 // Display draws the line plot.
 func (l *Lines) Display() {
 	lo, hi := scale(l.ScaleMin, l.ScaleMax)
+	if l.Getter != nil {
+		cimgui.PlotLines_FnFloatPtr(l.Label, l.Getter, l.Count, 0, l.Overlay, lo, hi, l.Size)
+		return
+	}
 	cimgui.PlotLines_FloatPtr(l.Label, l.Values, 0, l.Overlay, lo, hi, l.Size, 4)
 }
 
-// Histogram plots Values as a histogram. When ScaleMin == ScaleMax the range is
-// computed automatically.
+// Histogram plots a histogram. The samples come from Values, or from Getter (over
+// Count samples) when it is set. When ScaleMin == ScaleMax the range is computed
+// automatically.
 type Histogram struct {
 	Label    string
 	Values   []float32
+	Getter   func(i int32) float32 // when set, supplies Count samples lazily
+	Count    int32
 	Overlay  string
 	Size     imgui.Vec2
 	ScaleMin float32
@@ -50,6 +60,10 @@ func NewHistogram(label string, values []float32) *Histogram {
 // Display draws the histogram.
 func (h *Histogram) Display() {
 	lo, hi := scale(h.ScaleMin, h.ScaleMax)
+	if h.Getter != nil {
+		cimgui.PlotHistogram_FnFloatPtr(h.Label, h.Getter, h.Count, 0, h.Overlay, lo, hi, h.Size)
+		return
+	}
 	cimgui.PlotHistogram_FloatPtr(h.Label, h.Values, 0, h.Overlay, lo, hi, h.Size, 4)
 }
 

@@ -21,15 +21,20 @@
 //   - ImVec2/ImVec4 are represented by [Vec2]/[Vec4]; output pointers and scalars
 //     are passed as Go pointers and copied back.
 //
+// # Callbacks across cgo
+//
+// Functions that take a C callback (InputText events, the _FnStrPtr/_FnFloatPtr
+// getter overloads) route a Go closure across the boundary via [handle]: the
+// closure is registered to obtain an opaque token passed as user_data, recovered
+// in a //export trampoline (see callbacks.go), and released when the call
+// returns. [InputTextResizable] and friends additionally grow a [TextBuffer] in
+// place through the resize callback.
+//
 // # Not yet exposed
 //
-//   - InputText* callbacks (and the _FnStrPtr getter overloads): the buffer-based
-//     forms take a []byte and pass a nil callback for now. internal/handle exists
-//     to marshal Go callbacks across the boundary when these are added.
 //   - printf-style variadic functions cannot be called through cgo. The common
 //     ones are provided via small extern "C" shims in shims.cpp (see [TextColored],
 //     [TextWrapped], [SetTooltip], ...) that forward a pre-built string.
-//   - The DrawList API is not yet wrapped.
 //
 // # Textures
 //
