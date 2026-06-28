@@ -7,9 +7,36 @@
 // onto the cimgui C API with Go types substituted for C ones.
 //
 // It is deliberately internal and intentionally un-ergonomic: the curated,
-// idiomatic surface lives in the public packages that import this one. Overloaded
-// ImGui functions are bound to a single chosen overload here (for example
-// [RadioButton] wraps cimgui's igRadioButton_Bool).
+// idiomatic surface lives in the public packages that import this one.
+//
+// # Conventions
+//
+//   - Functions are named after their cimgui C counterpart with the "ig" prefix
+//     stripped. Overloaded calls keep cimgui's underscore disambiguator verbatim
+//     (igRadioButton_Bool becomes [RadioButton_Bool], igBeginChild_ID becomes
+//     [BeginChild_ID]); calls with no overload get the bare name ([Button]).
+//   - Each ImGui enum is exposed as a typed Go type backed by int32 with
+//     idiomatic constant names ([WindowFlags], WindowFlagsNoTitleBar). The values
+//     are taken directly from the C enum, never hardcoded.
+//   - ImVec2/ImVec4 are represented by [Vec2]/[Vec4]; output pointers and scalars
+//     are passed as Go pointers and copied back.
+//
+// # Not yet exposed
+//
+//   - InputText* callbacks (and the _FnStrPtr getter overloads): the buffer-based
+//     forms take a []byte and pass a nil callback for now. internal/handle exists
+//     to marshal Go callbacks across the boundary when these are added.
+//   - printf-style variadic functions cannot be called through cgo. The common
+//     ones are provided via small extern "C" shims in shims.cpp (see [TextColored],
+//     [TextWrapped], [SetTooltip], ...) that forward a pre-built string.
+//   - The DrawList API is not yet wrapped.
+//
+// # Textures
+//
+// [Image], [ImageWithBg] and [ImageButton] take a [TextureRef]. Build one with
+// [CreateTextureRGBA] (which uploads raw RGBA8 pixels to a GL texture via the
+// extern "C" helpers in texture.cpp), [TextureRefFromID] for a texture you
+// created yourself, or [FontAtlasTexRef] for Dear ImGui's font atlas.
 //
 // CIMGUI_DEFINE_ENUMS_AND_STRUCTS is defined for C compilation (the cgo preamble)
 // so cimgui.h exposes the C structs and enums, but not for the C++ translation
