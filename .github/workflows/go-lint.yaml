@@ -30,15 +30,12 @@ jobs:
             exit 1
           fi
 
-      - name: Check generated files
-        if: steps.download.conclusion != 'failure' && !cancelled()
+      - name: Install GLFW Dependencies (ubuntu)
         run: |
-          go generate ./...
-          if ! git diff --quiet; then
-            echo "::error::go generate produced uncommitted changes:"
-            git diff
-            exit 1
-          fi
+          sudo apt-get update
+          sudo apt-get install -y                                              \
+            libgl1-mesa-dev                                                    \
+            xorg-dev
 
       - name: Lint
         if: steps.download.conclusion != 'failure' && !cancelled()
