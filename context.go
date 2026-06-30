@@ -19,19 +19,31 @@ func (c Context) Destroy() {
 }
 
 // NewFrame begins a new frame. Call once per frame before any widget calls.
-func NewFrame() { cimgui.NewFrame() }
+func NewFrame() {
+	cimgui.NewFrame()
+}
 
 // EndFrame ends the frame; normally [Render] calls this for you.
-func EndFrame() { cimgui.EndFrame() }
+func EndFrame() {
+	cimgui.EndFrame()
+}
 
 // Render finalizes the frame's draw data for the renderer backend.
-func Render() { cimgui.Render() }
+func Render() {
+	cimgui.Render()
+}
 
 // StyleColorsDark applies the built-in dark style.
-func StyleColorsDark() { cimgui.StyleColorsDark() }
+func StyleColorsDark() {
+	cimgui.StyleColorsDark()
+}
 
 // StyleColorsLight applies the built-in light style.
-func StyleColorsLight() { cimgui.StyleColorsLight() }
+func StyleColorsLight() {
+	cimgui.StyleColorsLight()
+}
 
 // StyleColorsClassic applies the built-in classic style.
-func StyleColorsClassic() { cimgui.StyleColorsClassic() }
+func StyleColorsClassic() {
+	cimgui.StyleColorsClassic()
+}

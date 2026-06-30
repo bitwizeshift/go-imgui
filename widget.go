@@ -28,7 +28,9 @@ type CustomWidget struct {
 }
 
 // Custom returns a [CustomWidget] that runs fn when displayed.
-func Custom(fn func()) *CustomWidget { return &CustomWidget{Func: fn} }
+func Custom(fn func()) *CustomWidget {
+	return &CustomWidget{Func: fn}
+}
 
 // Display runs the wrapped function.
 func (c *CustomWidget) Display() {
